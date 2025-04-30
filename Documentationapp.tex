@@ -1,0 +1,124 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}   % Pour gérer l'encodage UTF-8
+\usepackage[T1]{fontenc}      % Pour une meilleure gestion des caractères 
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\title{Documentation de Haut Niveau\\Application de Traitement Photo Avancé}
+\author{Njitchoua Elisé Simon}
+\date{\today}
+
+\definecolor{codegray}{gray}{0.9}
+\lstset{
+    backgroundcolor=\color{codegray},
+    basicstyle=\ttfamily\footnotesize,
+    frame=single,
+    breaklines=true
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Objectif de l'application}
+Cette application web permet d’effectuer des traitements avancés sur des images directement via une interface intuitive développée avec \textbf{Streamlit}. Elle intègre plusieurs modules d’intelligence artificielle et de traitement d’image pour réaliser des opérations telles que :
+\begin{itemize}
+  \item La suppression automatique de l’arrière-plan
+  \item La détection et l’analyse de visages (âge, genre, émotion)
+  \item L’amélioration des images à l’aide de modèles de deep learning
+  \item L'application de filtres et de transformations personnalisées
+\end{itemize}
+
+\section*{Technologies Utilisées}
+\begin{description}[leftmargin=2cm]
+  \item[Streamlit] Pour construire l'interface utilisateur web réactive
+  \item[TensorFlow 2.13] Utilisé pour l’inférence de modèles de deep learning
+  \item[NumPy] Gestion des tableaux numériques et opérations matricielles
+  \item[PIL (Pillow)] Manipulations de base des images (chargement, redimensionnement, etc.)
+  \item[OpenCV] Traitement d’image avancé (filtres, contours, segmentation)
+  \item[rembg] Suppression automatique de l’arrière-plan à l’aide de modèles pré-entraînés
+  \item[DeepFace] Analyse faciale incluant reconnaissance, âge, genre et émotions
+\end{description}
+
+\section*{Architecture Générale de l'Application}
+\begin{enumerate}
+  \item L’utilisateur charge une image via l’interface Streamlit.
+  \item L’image est traitée et convertie (PIL/OpenCV).
+  \item Les traitements sont appliqués selon les options sélectionnées :
+  \begin{itemize}
+    \item Suppression de fond via \texttt{rembg}
+    \item Détection faciale avec \texttt{DeepFace}
+    \item Filtres OpenCV (flou, contours, etc.)
+    \item Amélioration via modèles TensorFlow
+  \end{itemize}
+  \item L’image traitée est affichée en sortie et téléchargeable.
+\end{enumerate}
+
+\section*{Fonctionnalités Principales}
+\begin{itemize}
+  \item Chargement et affichage dynamique d’images
+  \item Choix des traitements via des cases à cocher Streamlit
+  \item Visualisation comparative (avant/après)
+  \item Téléchargement du résultat final
+\end{itemize}
+
+\section*{Flux de Données}
+\begin{enumerate}
+  \item \textbf{Entrée utilisateur} : Image au format JPEG/PNG
+  \item \textbf{Prétraitement} : Conversion en tableau NumPy, redimensionnement
+  \item \textbf{Traitement} : Application des modules sélectionnés
+  \item \textbf{Sortie} : Image modifiée affichée et exportable
+\end{enumerate}
+
+\section*{Fichier \texttt{requirements.txt}}
+
+Voici la liste des dépendances nécessaires au bon fonctionnement de l’application :
+
+\begin{lstlisting}[language=bash]
+# Interface Web
+streamlit==1.40.1
+
+# Traitement d'image
+opencv-python==4.11.0.86
+Pillow==10.4.0
+numpy==1.24.3
+
+# Deep Learning
+tensorflow==2.13.0
+
+# Suppression d'arriere-plan
+rembg==2.0.61
+
+# Analyse faciale
+deepface==0.0.93
+
+# Optionnel (pour rembg/ONNX)
+onnxruntime==1.19.2
+# gerer et de configurer des variables d environnement
+dotenv Version: 0.9.9
+# Name: streamlit-image-comparison:outil de comparaison d'images interactif d image dans les app streamlit
+Version: 0.0.4
+# matplotlib
+Version: 3.7.5
+# scipy
+Version: 1.10.1
+\end{lstlisting}
+
+\textbf{Installation recommandée} :
+
+\begin{lstlisting}[language=bash]
+python -m venv venv
+source venv/bin/activate  # ou venv\Scripts\activate sous Windows
+pip install -r requirements.txt
+\end{lstlisting}
+
+\section*{Conclusion}
+Cette application exploite des outils de pointe pour proposer une solution complète de traitement photo avancé, accessible via une interface web simple et performante. Elle illustre l'intégration harmonieuse entre des bibliothèques de vision par ordinateur, de traitement d'image, et d'intelligence artificielle.
+
+\end{document}
